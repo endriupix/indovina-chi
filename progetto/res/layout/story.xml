@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/linearLayout1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="0.62" >
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="wrap_content"
+                android:layout_height="104dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="62dp"
+                    android:layout_height="102dp"
+                    android:src="@drawable/chi_peter" />
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="62dp"
+                    android:layout_height="102dp"
+                    android:src="@drawable/chi_susan" />
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="62dp"
+                    android:layout_height="102dp"
+                    android:src="@drawable/chi_richard" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Peter è il papà di Susan, la madre è morta, sono nati ad Hockenaim, in Germania. Susan e Richard
+sono sposati ed intellettuali radical-chic di sinistra, Susan è una scrittrice, mentre Richard,
+fumatore di sigaro e favorevole alla legalizzazione delle droghe leggere, lavora al catasto." />
+
+            <LinearLayout
+                android:id="@+id/linearLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="140dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="62dp"
+                    android:layout_height="102dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignTop="@+id/linearLayout3"
+                    android:layout_marginLeft="100dp"
+                    android:src="@drawable/chi_bernard" />
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="62dp"
+                    android:layout_height="102dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/textView1"
+                    android:layout_marginRight="96dp"
+                    android:src="@drawable/chi_maria" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Richard è cognato di Bernard, che lavora al KGB; non si sa molto su di lui e nessuno della famiglia
+sa che è una spia. La moglie Maria crede che lui sia un semplice operaio metalmeccanico. " />
+
+            <LinearLayout
+                android:id="@+id/linearLayout4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="62dp"
+                    android:layout_height="102dp"
+                    android:src="@drawable/chi_charles" />
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="62dp"
+                    android:layout_height="102dp"
+                    android:src="@drawable/chi_claire" />
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="62dp"
+                    android:layout_height="102dp"
+                    android:src="@drawable/chi_anita" />
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="62dp"
+                    android:layout_height="102dp"
+                    android:src="@drawable/chi_alfred" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Charles è sposato con Claire e hanno una figlia, Anita che ha una storia sofferta con Alfred
+che la fa “tribolare”." />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

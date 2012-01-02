@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string-array name="images_name">
+	    <item>Alex</item>
+	    <item>Alfred</item>
+	    <item>Anita</item>
+	    <item>Anne</item>
+	    <item>Bernard</item>
+	    <item>Bill</item>
+	    <item>Charles</item>
+	    <item>Claire</item>
+	    <item>David</item>
+	    <item>Eric</item>
+	    <item>Frans</item>
+	    <item>George</item>
+	    <item>Herman</item>
+	    <item>Joe</item>
+	    <item>Maria</item>
+	    <item>Max</item>
+	    <item>Paul</item>
+	    <item>Peter</item>
+	    <item>Philip</item>
+	    <item>Richard</item>
+	    <item>Robert</item>
+	    <item>Sam</item>
+	    <item>Susan</item>
+	    <item>Tom</item>
+	</string-array>
+    <array name="options_bluetooth">
+	    <item>Cerca dispositivo</item>
+	    <item>Renditi disponibile</item>
+	</array>
+	<string-array name="options_categories">
+	    <item>Sesso</item>
+	    <item>Capelli</item>
+	    <item>Occhi</item>
+	    <item>Baffi</item>
+	    <item>Barba</item>
+	    <item>Segni particolari</item>
+	</string-array>
+	<string-array name="corto_lungo">
+	    <item>Lunghi</item>
+	    <item>Corti</item>
+	</string-array>
+	<string-array name="colori"></string-array>
+</resources>

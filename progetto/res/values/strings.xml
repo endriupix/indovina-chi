@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">IndovinaChi</string>
+    <string name="new_game_string">New Game</string>
+    <string name="exit_string">Exit</string>
+    <string name="title_string">Indovina Chi?</string>
+    <string name="instruction_string">Instruction</string>
+    <string name="story_string">Story of the Game</string>
+    <string name="choice_face_string">Avvia scelta random</string>
+    <string name="start_string">Start!</string>
+    <string name="character_name_string">Il nome del personaggio è:</string>
+    <string name="istruction">
+
+Scoprire chi é il personaggio raffigurato sulla carta gialla del vostro avversario prima che lui indovini ilpersoneggio raffigurato sulla vostra.</string>
+
+        
+    <string name="title_paired_devices">Paired devices</string>
+    <string name="title_other_devices">Other devices</string>
+    <string name="button_scan">Scan for devices</string>
+    <string name="none_paired">No devices have been paired</string>
+    <string name="none_found">No devices found</string>
+    <string name="scanning">Searching for devices</string>
+    <string name="select_device">Select a device to connect</string>
+    <string name="option_find_user">Find opponent</string>
+    <string name="option_make_discoverable">Make discoverable</string>
+    <string name="connecting">Connecting ...</string>
+    <string name="waiting">Waiting ...</string>
+    <string name="title_bt_not_supported">Bluetooth not supported</string>
+    <string name="text_bt_not_supported">Bluetooth not supported. You cannot play this game without Bluetooth.</string>
+    <string name="bt_not_enabled_leaving">BT is necessary</string>
+    <string name="goal_game_title_string">Goal of the Game</string>
+    <string name="goal_game_text_string">Scoprire chi é il personaggio raffigurato sulla carta gialla del vostro avversario prima che lui indovini ilpersoneggio raffigurato sulla vostra.</string>
+    <string name="before_start_title_string">Before you start playing</string>
+    <string name="before_start_text_string">Prima di giocare per la prima volta, notate le differenze tra le facce sulle carte: nasi, cappelli, occhiali, capelli barbe, i baffl e molti altri dettagli sono tutti differenti in
+ogni personaggio.</string>
+    <string name="how_play_title_string">How to play</string>
+    <string name="how_play_text_string">Mescolate le carte gialle e prendetene una ciascuno.</string>
+    <string name="winner_title_string">Vincitore</string>
+    <string name="winner_text_string">Il vincitore è colui che indovina per primo il nome del personaggio dell avversario.</string>
+    <string name="choose_question_category">Scegli la categoria di domanda...</string>
+
+</resources>

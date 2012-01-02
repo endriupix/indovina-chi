@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">Indovina Chi</string>
+    <string name="new_game_string">Nuova Partita</string>
+    <string name="exit_string">Esci</string>
+    <string name="title_string">Indovina Chi?</string>
+    <string name="instruction_string">Istruzioni</string>
+    <string name="story_string">La storia del gioco</string>
+    <string name="choice_face_string">Avvia scelta random</string>
+    <string name="start_string">Inizia!</string>
+    <string name="character_name_string">Il nome del personaggio è:</string>
+    <string name="istruction">
+
+Scoprire chi é il personaggio raffigurato sulla carta gialla del vostro avversario prima che lui indovini ilpersoneggio raffigurato sulla vostra.</string>
+    
+    
+</resources>
