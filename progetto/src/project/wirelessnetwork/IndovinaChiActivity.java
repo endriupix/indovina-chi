@@ -39,5 +39,13 @@ public class IndovinaChiActivity extends Activity {
 				v.getContext().startActivity(actStory);
 			}
 		});
+        
+        Button btnExit = (Button)findViewById(R.id.exit_button);
+        btnExit.setOnClickListener(new View.OnClickListener() {
+			
+			public void onClick(View v) {
+				System.exit(0);	
+			}
+		});
     }
 }
