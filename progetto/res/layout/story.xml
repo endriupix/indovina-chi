@@ -14,25 +14,30 @@
             android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_gravity="top"
             android:orientation="vertical" >
 
             <LinearLayout
                 android:id="@+id/linearLayout2"
-                android:layout_width="wrap_content"
-                android:layout_height="104dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dip"
+                android:layout_marginTop="10dip"
                 android:gravity="center_horizontal"
-                android:orientation="horizontal" >
+                android:orientation="horizontal">
 
                 <ImageView
                     android:id="@+id/imageView1"
                     android:layout_width="62dp"
                     android:layout_height="102dp"
+                    android:layout_marginRight="40dip"
                     android:src="@drawable/chi_peter" />
 
                 <ImageView
                     android:id="@+id/imageView2"
                     android:layout_width="62dp"
                     android:layout_height="102dp"
+                    android:layout_marginRight="40dip"
                     android:src="@drawable/chi_susan" />
 
                 <ImageView
@@ -54,7 +59,8 @@ fumatore di sigaro e favorevole alla legalizzazione delle droghe leggere, lavora
                 android:id="@+id/linearLayout3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="140dp"
+                android:layout_marginBottom="10dip"
+                android:layout_marginTop="10dip"
                 android:gravity="center_horizontal"
                 android:orientation="horizontal" >
 
@@ -64,7 +70,7 @@ fumatore di sigaro e favorevole alla legalizzazione delle droghe leggere, lavora
                     android:layout_height="102dp"
                     android:layout_alignParentLeft="true"
                     android:layout_alignTop="@+id/linearLayout3"
-                    android:layout_marginLeft="100dp"
+                    android:layout_marginRight="70dip"
                     android:src="@drawable/chi_bernard" />
 
                 <ImageView
@@ -73,7 +79,6 @@ fumatore di sigaro e favorevole alla legalizzazione delle droghe leggere, lavora
                     android:layout_height="102dp"
                     android:layout_alignParentRight="true"
                     android:layout_below="@+id/textView1"
-                    android:layout_marginRight="96dp"
                     android:src="@drawable/chi_maria" />
             </LinearLayout>
 
@@ -87,24 +92,31 @@ sa che è una spia. La moglie Maria crede che lui sia un semplice operaio metalm
             <LinearLayout
                 android:id="@+id/linearLayout4"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dip"
+                android:layout_marginTop="10dip"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal" >
 
                 <ImageView
                     android:id="@+id/imageView3"
                     android:layout_width="62dp"
                     android:layout_height="102dp"
+                    android:layout_marginRight="30dp"
                     android:src="@drawable/chi_charles" />
 
                 <ImageView
                     android:id="@+id/imageView3"
                     android:layout_width="62dp"
                     android:layout_height="102dp"
+                    android:layout_marginRight="30dp"
                     android:src="@drawable/chi_claire" />
 
                 <ImageView
                     android:id="@+id/imageView3"
                     android:layout_width="62dp"
                     android:layout_height="102dp"
+                    android:layout_marginRight="30dp"
                     android:src="@drawable/chi_anita" />
 
                 <ImageView
@@ -120,6 +132,257 @@ sa che è una spia. La moglie Maria crede che lui sia un semplice operaio metalm
                 android:layout_height="wrap_content"
                 android:text="Charles è sposato con Claire e hanno una figlia, Anita che ha una storia sofferta con Alfred
 che la fa “tribolare”." />
+
+            <LinearLayout
+                android:id="@+id/linearLayout4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dip"
+                android:layout_marginTop="10dip"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="62dp"
+                    android:layout_height="102dp"
+                    android:src="@drawable/chi_david" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="David, fratello di Charles purtroppo è ancora single; i due gestiscono una piccola s.r.l di
+impiantistica idraulica." />
+
+            <LinearLayout
+                android:id="@+id/linearLayout4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dip"
+                android:layout_marginTop="10dip"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="62dp"
+                    android:layout_height="102dp"
+                    android:layout_marginRight="40dip"
+                    android:src="@drawable/chi_george" />
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="62dp"
+                    android:layout_height="102dp"
+                    android:layout_marginRight="40dip"
+                    android:src="@drawable/chi_bernard" />
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="62dp"
+                    android:layout_height="102dp"
+                    android:src="@drawable/chi_joe" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="L’investigatore privato, nonché agente speciale F.B.I George, è comunque sulle tracce di Bernard
+(c’è qualcosa che non gli torna!); per questo si affida la consulenza del rinomato esperto di
+informatica Joe." />
+
+            <LinearLayout
+                android:id="@+id/linearLayout4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dip"
+                android:layout_marginTop="10dip"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="62dp"
+                    android:layout_height="102dp"
+                    android:layout_marginRight="40dip"
+                    android:src="@drawable/chi_sam" />
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="62dp"
+                    android:layout_height="102dp"
+                    android:layout_marginRight="40dip"
+                    android:src="@drawable/chi_paul" />
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="62dp"
+                    android:layout_height="102dp"
+                    android:layout_marginRight="32dip"
+                    android:src="@drawable/chi_tom" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Intanto nella piccola biblioteca di quartiere per ragazzi gestita dal P.G.A.Q. ( piccolo gruppo anziani
+quartiere) i tre Sam, Paul e Tom continuano nelle loro perverse abitudini tendenti alla pedofilia
+spinta via ftp. Sulle pratiche di questi ultimi cade l’ombra del sospetto ormai da molti anni dopo
+le ripetute lamentele da parte dei genitori di molti bambini del quartiere. Ma vista l’importante
+posizione sociale di Sam, assessore alle politiche giovanili della città, nessuno ha ancora avuto il
+coraggio di parlare. Vige l’omertà." />
+
+            <LinearLayout
+                android:id="@+id/linearLayout4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dip"
+                android:layout_marginTop="10dip"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="62dp"
+                    android:layout_height="102dp"
+                    android:layout_marginRight="70dip"
+                    android:src="@drawable/chi_alex" />
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="62dp"
+                    android:layout_height="102dp"
+                    android:src="@drawable/chi_philip" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nel “giro” troviamo spesso anche Alex e Philip, una nota e duratura coppia omosessuale dichiarata.
+                " />
+
+            <LinearLayout
+                android:id="@+id/linearLayout4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dip"
+                android:layout_marginTop="10dip"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="62dp"
+                    android:layout_height="102dp"
+                    android:layout_marginRight="70dip"
+                    android:src="@drawable/chi_frans" />
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="62dp"
+                    android:layout_height="102dp"
+                    android:src="@drawable/chi_eric" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Frans e Eric invece preferiscono mantenere la segretezza, visto il lavoro importante di Eric
+(Sottotenente della Marina, Capitano di Vascello)." />
+
+            <LinearLayout
+                android:id="@+id/linearLayout4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dip"
+                android:layout_marginTop="10dip"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="62dp"
+                    android:layout_height="102dp"
+                    android:layout_marginRight="70dip"
+                    android:src="@drawable/chi_max" />
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="62dp"
+                    android:layout_height="102dp"
+                    android:src="@drawable/chi_anne" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Trasferitisi da poco dal Marocco in un piccolo bilocale nel quartiere turco della città, Max ed Anne
+rilevano una piccola attività, convertendola nel più economico Donnër Kebap. Mentre Max si occupa
+della cucina e del servizio ai clienti, Anne si dedica alla cura della casa e all’aspetto finanziario
+dell’attività." />
+
+            <LinearLayout
+                android:id="@+id/linearLayout4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dip"
+                android:layout_marginTop="10dip"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="62dp"
+                    android:layout_height="102dp"
+                    android:layout_marginRight="70dip"
+                    android:src="@drawable/chi_bill" />
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="62dp"
+                    android:layout_height="102dp"
+                    android:src="@drawable/chi_herman" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="I due fratelli Bill ed Herman, detti “the Red Brodda”, fin da piccoli godono di una fama infelice.
+Infatti derisi da tutti conducono una vita misera ed infelice. Herman lavora come impiegato alle
+poste coltivando l’hobby per la filatelia e la numismatica; mentre Bill lavora part-time (solo notturni)
+nella multinazionale Mac Donalds (divisione Mac Drive). A causa della sua malformazione cranica
+detta scherzosamente in gergo medico “testa ad uovo” riesce spesso a trovare piccoli lavoretti
+come attrazione nel luna park del quartiere." />
+
+            <LinearLayout
+                android:id="@+id/linearLayout4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dip"
+                android:layout_marginTop="10dip"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal" >
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="62dp"
+                    android:layout_height="102dp"
+                    android:src="@drawable/chi_robert" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Infine Robert, allibito da chi lo circonda, continua a chiedersi cosa centri lui in tutto ciò." />
         </LinearLayout>
     </ScrollView>
 
