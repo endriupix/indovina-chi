@@ -38,5 +38,55 @@ ogni personaggio.</string>
     <string name="winner_title_string">Vincitore</string>
     <string name="winner_text_string">Il vincitore è colui che indovina per primo il nome del personaggio dell avversario.</string>
     <string name="choose_question_category">Scegli la categoria di domanda...</string>
+    
+    <string name="string_choose_question">Scegli la domanda ...</string>
+    <string name="string_make_question">Poni Domanda ! ! !</string>
+    
+    <string name="no_one_choosed">- - - - -</string>
+    <string name="category_sex">Sesso</string>
+    <string name="question_string_sex">E\'</string>
+    <string name="category_hairs">Capelli</string>
+    <string name="question string_hairs">i capelli</string>
+    <string name="category_eyes">Occhi</string>
+    <string name="question string_eyes">gli occhi</string>
+    <string name="category_moustache">Baffi</string>
+    <string name="category_beard">Barba</string>
+    <string name="category_particular_signs">Segni particolari</string>
+    <string name="category_accessories">Accessori</string>
+    
+    <string name="yes_no_question">Si / No</string>
+    
+    <string name="sex_male">Maschio</string>
+    <string name="sex_female">Femmina</string>
+    
+    <string name="accessories_hat">Cappello</string>
+    <string name="accessories_glasses">Occhiali</string>
+    <string name="accessories_earring">Orecchini</string>
+    <string name="accessories_flakes">Fiocchi capelli</string>
+    
+    <string name="hairs_short">Corti</string>
+    <string name="hairs_long">Lunghi</string>
+    
+    <string name="red_cheecks">Gance rosse</string>
+    <string name="big_mouth">Bocca grande</string>
+    <string name="thick_brow">Sopraciglia folte</string>
+    
+    <string name="color_orange_singular">Arancione</string>
+    <string name="color_orange_plural">Arancioni</string>
+    
+    <string name="color_yellow_singular">Giallo</string>
+    <string name="color_yellow_plural">Gialli</string>
+    <string name="color_yellow_female">Gialla</string>
+    
+    <string name="color_white_singular">Bianco</string>
+    <string name="color_white_plural">Bianchi</string>
+    <string name="color_white_female">Bianca</string>
+    
+    <string name="color_brown_singular">Marrone</string>
+    <string name="color_brown_plural">Marroni</string>
+    
+    <string name="color_black_singular">Nero</string>
+    <string name="color_black_plural">Neri</string>
+    <string name="color_black_female">Nera</string>
 
 </resources>

@@ -16,6 +16,8 @@ import android.widget.TableRow.LayoutParams;
 public class NewGameActivity extends Activity {
 	
 	private String TAG = "NewGameActivity";
+	public static final String COMPOSED_QUESTION = "COMPOSED_QUESTION";
+	public static final int CODE_COMPOSE_QUESTION = 1;
 	
 	private Integer[] facesID = {R.drawable.chi_alex, R.drawable.chi_alfred, 
 			R.drawable.chi_anita, R.drawable.chi_anne, R.drawable.chi_bernard, 

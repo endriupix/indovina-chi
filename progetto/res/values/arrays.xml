@@ -30,17 +30,60 @@
 	    <item>Cerca dispositivo</item>
 	    <item>Renditi disponibile</item>
 	</array>
-	<string-array name="options_categories">
-	    <item>Sesso</item>
-	    <item>Capelli</item>
-	    <item>Occhi</item>
-	    <item>Baffi</item>
-	    <item>Barba</item>
-	    <item>Segni particolari</item>
-	</string-array>
-	<string-array name="corto_lungo">
-	    <item>Lunghi</item>
-	    <item>Corti</item>
-	</string-array>
-	<string-array name="colori"></string-array>
+	<array name="options_categories">
+        <item>@string/no_one_choosed</item>
+	    <item>@string/category_sex</item>
+	    <item>@string/category_hairs</item>
+	    <item>@string/category_eyes</item>
+	    <item>@string/category_moustache</item>
+	    <item>@string/category_beard</item>
+	    <item>@string/category_particular_signs</item>
+	    <item>@string/category_accessories</item>
+	</array>
+	<array name="category_sex">
+	    <item>@string/sex_male</item>
+	    <item>@string/sex_female</item>
+	</array>
+	<array name="category_accessories">
+	    <item>@string/accessories_hat</item>
+	    <item>@string/accessories_glasses</item>
+	    <item>@string/accessories_earring</item>
+	    <item>@string/accessories_flakes</item>
+	</array>
+	<array name="category_beard">
+	    <item>@string/yes_no_question</item>
+	    <item>@string/color_orange_singular</item>
+	    <item>@string/color_yellow_female</item>
+	    <item>@string/color_white_female</item>
+	    <item>@string/color_brown_singular</item>
+	    <item>@string/color_black_female</item>
+	</array>
+	<array name="category_hairs">
+	    <item>@string/yes_no_question</item>
+	    <item>@string/hairs_short</item>
+	    <item>@string/hairs_long</item>
+	    <item>@string/color_orange_plural</item>
+	    <item>@string/color_yellow_plural</item>
+	    <item>@string/color_white_plural</item>
+	    <item>@string/color_brown_plural</item>
+	    <item>@string/color_black_plural</item>
+	</array>
+	<array name="category_eyes">
+	    <item>@string/color_yellow_plural</item>
+	    <item>@string/color_brown_plural</item>
+	    <item>@string/color_black_plural</item>
+	</array>
+	<array name="category_moustache">
+	    <item>@string/yes_no_question</item>
+	    <item>@string/color_orange_plural</item>
+	    <item>@string/color_yellow_plural</item>
+	    <item>@string/color_white_plural</item>
+	    <item>@string/color_brown_plural</item>
+	    <item>@string/color_black_plural</item>
+	</array>
+	<array name="category_particular_signs">
+	    <item>@string/red_cheecks</item>
+	    <item>@string/big_mouth</item>
+	    <item>@string/thick_brow</item>
+	</array>
 </resources>
