@@ -24,6 +24,7 @@ public class BluetoothConnectionManager {
 	
 	private final BluetoothAdapter mAdapter;
 	private final Handler handler;
+	private Handler handlerRead;
 	private AcceptThread acceptThread;
 	private ConnectThread connectThread;
 	private ConnectedThread connectedThread;
@@ -49,6 +50,10 @@ public class BluetoothConnectionManager {
 	
 	public synchronized int getState() {
 		return mState;
+	}
+	
+	public void setHandlerRead(Handler handler) {
+		handlerRead = handler;
 	}
 	
 	public synchronized void start() {

@@ -2,7 +2,10 @@ package project.wirelessnetwork;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -15,9 +18,15 @@ import android.widget.TableRow.LayoutParams;
 
 public class NewGameActivity extends Activity {
 	
-	private String TAG = "NewGameActivity";
+	private String TAG = "GAME_MANAGER";
 	public static final String COMPOSED_QUESTION = "COMPOSED_QUESTION";
 	public static final int CODE_COMPOSE_QUESTION = 1;
+	
+	public static final int MESSAGE_READ = 2;
+	
+	public static final int STATE_MAKE_QUESTION = 1;
+	public static final int STATE_WAITING_ANSWER = 2;
+	public static final int STATE_WAITING_QUESTION = 3;
 	
 	private Integer[] facesID = {R.drawable.chi_alex, R.drawable.chi_alfred, 
 			R.drawable.chi_anita, R.drawable.chi_anne, R.drawable.chi_bernard, 
@@ -30,6 +39,8 @@ public class NewGameActivity extends Activity {
 	
 	private FaceConteiner[] faces;
 	private BluetoothConnectionManager connectionManager;
+	
+	private String lastQuestion;
 	
 	BluetoothConnectionManager bluetoothManager;
 	
@@ -103,7 +114,48 @@ public class NewGameActivity extends Activity {
 				
 			}
 		});
+		
+		Button btnMakeQuestion = (Button) findViewById(R.id.btn_make_question);
+		btnMakeQuestion.setOnClickListener(new View.OnClickListener() {
+			
+			public void onClick(View v) {
+				
+				Intent intent = new Intent(NewGameActivity.this, MakeQuestionActivity.class);
+				startActivityForResult(intent, CODE_COMPOSE_QUESTION);
+				
+			}
+		});
         
        /* Devo avviare activity per determinare personaggio che viene assegnato al giocatore */
     }
+	
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		Log.d(TAG, "OnActivityResult");
+		
+		switch(requestCode) {
+		
+		case CODE_COMPOSE_QUESTION:
+			
+			if (resultCode == Activity.RESULT_OK) {
+				
+				Button btnMakeQuestion = (Button) findViewById(R.id.btn_make_question);
+				btnMakeQuestion.setEnabled(false);
+				lastQuestion = data.getExtras().getString(COMPOSED_QUESTION);
+				Log.d(TAG, lastQuestion);
+				//connectionManager.write(lastQuestion.getBytes());
+			}
+		
+		}
+	}
+	
+	private Handler handlerRead = new Handler() {
+		
+		public void handleMessage(Message msg) {
+			
+			switch(msg.what) {
+			
+			case MESSAGE_READ:
+			}
+		}
+	};
 }
