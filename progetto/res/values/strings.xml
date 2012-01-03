@@ -44,32 +44,46 @@ ogni personaggio.</string>
     
     <string name="no_one_choosed">- - - - -</string>
     <string name="category_sex">Sesso</string>
-    <string name="question_string_sex">E\'</string>
+    <string name="question_string_sex">E</string>
+    <string name="first_part_have">Ha</string>
     <string name="category_hairs">Capelli</string>
-    <string name="question string_hairs">i capelli</string>
+    <string name="question_string_hairs">i capelli</string>
     <string name="category_eyes">Occhi</string>
-    <string name="question string_eyes">gli occhi</string>
+    <string name="question_string_eyes">gli occhi</string>
     <string name="category_moustache">Baffi</string>
+    <string name="question_string_moustache">i baffi</string>
     <string name="category_beard">Barba</string>
+    <string name="question_string_beard">la barba</string>
     <string name="category_particular_signs">Segni particolari</string>
+    <string name="question_string_particular_signs">Ha</string>
     <string name="category_accessories">Accessori</string>
+    <string name="question_string_accessories">Porta</string>
     
     <string name="yes_no_question">Si / No</string>
     
     <string name="sex_male">Maschio</string>
+    <string name="question_string_male">un maschio</string>
     <string name="sex_female">Femmina</string>
+    <string name="question_string_female">una femmina</string>
     
     <string name="accessories_hat">Cappello</string>
+    <string name="question_string_hat">il cappello</string>
     <string name="accessories_glasses">Occhiali</string>
+    <string name="question_string_glasses">gli occhiali</string>
     <string name="accessories_earring">Orecchini</string>
+    <string name="question_string_earring">gli orecchini</string>
     <string name="accessories_flakes">Fiocchi capelli</string>
+    <string name="question_string_flakes">i fiocchi sui capelli</string>
     
     <string name="hairs_short">Corti</string>
     <string name="hairs_long">Lunghi</string>
     
     <string name="red_cheecks">Gance rosse</string>
+    <string name="question_string_red_cheecks">le guance rosse</string>
     <string name="big_mouth">Bocca grande</string>
+    <string name="question_string_big_mouth">la bocca grande</string>
     <string name="thick_brow">Sopraciglia folte</string>
+    <string name="question_string_thick_brow">le sopraciglia folte</string>
     
     <string name="color_orange_singular">Arancione</string>
     <string name="color_orange_plural">Arancioni</string>

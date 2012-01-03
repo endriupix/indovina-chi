@@ -40,6 +40,13 @@
 	    <item>@string/category_particular_signs</item>
 	    <item>@string/category_accessories</item>
 	</array>
+	<array name="question_strings_category">
+	    <item>@string/question_string_sex</item>
+	    <item>@string/question_string_hairs</item>
+	    <item>@string/question_string_eyes</item>
+	    <item>@string/question_string_moustache</item>
+	    <item>@string/question_string_beard</item>
+	</array>
 	<array name="category_sex">
 	    <item>@string/sex_male</item>
 	    <item>@string/sex_female</item>
@@ -49,6 +56,12 @@
 	    <item>@string/accessories_glasses</item>
 	    <item>@string/accessories_earring</item>
 	    <item>@string/accessories_flakes</item>
+	</array>
+	<array name="question_string_accessories">
+	    <item>@string/question_string_hat</item>
+	    <item>@string/question_string_glasses</item>
+	    <item>@string/question_string_earring</item>
+	    <item>@string/question_string_flakes</item>
 	</array>
 	<array name="category_beard">
 	    <item>@string/yes_no_question</item>
@@ -85,5 +98,10 @@
 	    <item>@string/red_cheecks</item>
 	    <item>@string/big_mouth</item>
 	    <item>@string/thick_brow</item>
+	</array>
+	<array name="question_string_particular_signs">
+	    <item>@string/question_string_red_cheecks</item>
+	    <item>@string/question_string_big_mouth</item>
+	    <item>@string/question_string_thick_brow</item>
 	</array>
 </resources>
