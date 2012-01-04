@@ -1,7 +1,9 @@
 package project.wirelessnetwork;
 
-
+import java.util.Arrays;
 import android.app.Activity;
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,21 +14,29 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.TableRow.LayoutParams;
+import android.widget.Toast;
 
 public class NewGameActivity extends Activity {
 	
 	private String TAG = "GAME_MANAGER";
 	public static final String COMPOSED_QUESTION = "COMPOSED_QUESTION";
+	public static final String IMAGE_OWN_FACE = "OWN_FACE";
 	public static final int CODE_COMPOSE_QUESTION = 1;
+	public static final int CODE_CHOOSE_FACE = 2;
+	public static final int GIVE_QUESTION_ANSWER = 3;
 	
 	public static final int MESSAGE_READ = 2;
 	
 	public static final int STATE_MAKE_QUESTION = 1;
 	public static final int STATE_WAITING_ANSWER = 2;
 	public static final int STATE_WAITING_QUESTION = 3;
+	
+	private int state = 0;
 	
 	private Integer[] facesID = {R.drawable.chi_alex, R.drawable.chi_alfred, 
 			R.drawable.chi_anita, R.drawable.chi_anne, R.drawable.chi_bernard, 
@@ -37,12 +47,13 @@ public class NewGameActivity extends Activity {
 			R.drawable.chi_peter, R.drawable.chi_philip, R.drawable.chi_richard, 
 			R.drawable.chi_robert, R.drawable.chi_sam, R.drawable.chi_susan, R.drawable.chi_tom};
 	
+	private String names[];
 	private FaceConteiner[] faces;
+	private int ownFaceID; 
+	private int indexOwnFace;
 	private BluetoothConnectionManager connectionManager;
-	
-	private String lastQuestion;
-	
-	BluetoothConnectionManager bluetoothManager;
+	private String lastQuestionMade;
+	private String lastQuestionReceived = "ha i capelli arancioni?";
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,7 +63,7 @@ public class NewGameActivity extends Activity {
         
         connectionManager = ConnectDevice.connectionManager;
         
-        String[] names = this.getResources().getStringArray(R.array.images_name);
+        names = this.getResources().getStringArray(R.array.images_name);
 		faces = new FaceConteiner[facesID.length];
 		
 		int facesPerRow = 4;
@@ -122,12 +133,73 @@ public class NewGameActivity extends Activity {
 				
 				Intent intent = new Intent(NewGameActivity.this, MakeQuestionActivity.class);
 				startActivityForResult(intent, CODE_COMPOSE_QUESTION);
+			}
+		});
+		
+		
+		Button btnReadAnswer = (Button)findViewById(R.id.btn_read_answer);
+		btnReadAnswer.setEnabled(false);
+		
+		Button btnReadQuestion = (Button)findViewById(R.id.btn_read_question);
+		//btnReadQuestion.setEnabled(false);
+		btnReadQuestion.setOnClickListener(new View.OnClickListener() {
+			
+			/**
+			 * Si occupa di mostrare la domanda che viene posta dall'avversario
+			 */
+			public void onClick(View v) {
+				
+				Context context = getApplicationContext();
+				Dialog questionDialog = new Dialog(NewGameActivity.this);
+				questionDialog.setContentView(R.layout.dialog_answer_question);
+				questionDialog.setTitle("Una domanda per te..");
+				
+				Button btnYes = (Button)questionDialog.findViewById(R.id.btn_answer_yes);
+				Log.d("Prova", new Boolean(btnYes!=null).toString());
+				Button btnNo = (Button)questionDialog.findViewById(R.id.btn_answer_no);
+				Log.d("Prova", new Boolean(btnNo!=null).toString());
+				btnYes.setOnClickListener(new OnClickListener() {
+					
+					public void onClick(View v) {
+						
+						String answer = "Si";
+						connectionManager.write(answer.getBytes());
+						
+					}
+				});
+				btnNo.setOnClickListener(new OnClickListener() {
+					
+					public void onClick(View v) {
+						
+						String answer = "No";
+						connectionManager.write(answer.getBytes());
+						
+					}
+				});
+				
+				TextView text = (TextView)questionDialog.findViewById(R.id.text_to_give_answer);
+				text.setText(lastQuestionReceived);
+				
+				ImageView image = (ImageView)questionDialog.findViewById(R.id.image_to_give_answer);
+				image.setImageResource(ownFaceID);
+				
+				questionDialog.show();
 				
 			}
 		});
+		
+		//connectionManager.setHandlerRead(handlerRead);
         
-       /* Devo avviare activity per determinare personaggio che viene assegnato al giocatore */
+		Intent intent = new Intent(this, ChoiceFaceActivity.class);
+		startActivityForResult(intent, CODE_CHOOSE_FACE);
+		/* Devo avviare activity per determinare personaggio che viene assegnato al giocatore */
     }
+	
+	public void onStart() {
+		super.onStart();
+		
+		
+	}
 	
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		Log.d(TAG, "OnActivityResult");
@@ -140,11 +212,30 @@ public class NewGameActivity extends Activity {
 				
 				Button btnMakeQuestion = (Button) findViewById(R.id.btn_make_question);
 				btnMakeQuestion.setEnabled(false);
-				lastQuestion = data.getExtras().getString(COMPOSED_QUESTION);
-				Log.d(TAG, lastQuestion);
+				lastQuestionMade = data.getExtras().getString(COMPOSED_QUESTION);
+				Log.d(TAG, lastQuestionMade);
 				//connectionManager.write(lastQuestion.getBytes());
 			}
-		
+			
+			break;
+			
+		case CODE_CHOOSE_FACE:
+			
+			if (resultCode == Activity.RESULT_OK) {
+				ownFaceID = data.getExtras().getInt(IMAGE_OWN_FACE);
+				
+				indexOwnFace = Arrays.binarySearch(facesID, ownFaceID);
+				
+			}
+			else {
+				Toast.makeText(this, "Non hai scelto il personaggio", Toast.LENGTH_SHORT).show();
+				finish();
+			}
+			break;
+			
+		case GIVE_QUESTION_ANSWER: 
+			
+			break;
 		}
 	}
 	
@@ -155,6 +246,20 @@ public class NewGameActivity extends Activity {
 			switch(msg.what) {
 			
 			case MESSAGE_READ:
+				byte[] readBuff = (byte[]) msg.obj;
+				if (state == STATE_WAITING_ANSWER) {
+					// messaggio ottenuto è la risposta alla domanda
+					String answer = new String(readBuff, 0, msg.arg1);
+					//devo mandare answer a chi si occupa di mostrarla
+					
+				}
+				if (state == STATE_WAITING_QUESTION) {
+					//messaggio ricevuto è la domanda posta dall'utente
+					String question = new String(readBuff, 0, msg.arg1);
+					lastQuestionReceived = question;
+					
+				}
+				break;
 			}
 		}
 	};
