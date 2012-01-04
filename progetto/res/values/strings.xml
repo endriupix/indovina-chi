@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">IndovinaChi</string>
-    <string name="new_game_string">New Game</string>
-    <string name="exit_string">Exit</string>
+    <string name="app_name">Indovina Chi?</string>
+    <string name="new_game_string">Nuova Partita</string>
+    <string name="exit_string">Chiudi</string>
     <string name="title_string">Indovina Chi?</string>
-    <string name="instruction_string">Instruction</string>
-    <string name="story_string">Story of the Game</string>
+    <string name="instruction_string">Istruzioni</string>
+    <string name="story_string">Storia del gioco</string>
     <string name="choice_face_string">Avvia scelta random</string>
     <string name="start_string">Start!</string>
     <string name="character_name_string">Il nome del personaggio è:</string>
-    <string name="istruction">
-
-Scoprire chi é il personaggio raffigurato sulla carta gialla del vostro avversario prima che lui indovini ilpersoneggio raffigurato sulla vostra.</string>
+    <string name="istruction">Scoprire chi é il personaggio raffigurato sulla carta gialla del vostro avversario prima che lui indovini ilpersoneggio raffigurato sulla vostra.</string>
 
         
     <string name="title_paired_devices">Paired devices</string>
@@ -28,13 +26,15 @@ Scoprire chi é il personaggio raffigurato sulla carta gialla del vostro avversa
     <string name="title_bt_not_supported">Bluetooth not supported</string>
     <string name="text_bt_not_supported">Bluetooth not supported. You cannot play this game without Bluetooth.</string>
     <string name="bt_not_enabled_leaving">BT is necessary</string>
-    <string name="goal_game_title_string">Goal of the Game</string>
+    <string name="goal_game_title_string">Scopo del gioco</string>
     <string name="goal_game_text_string">Scoprire chi é il personaggio raffigurato sulla carta gialla del vostro avversario prima che lui indovini ilpersoneggio raffigurato sulla vostra.</string>
-    <string name="before_start_title_string">Before you start playing</string>
+    <string name="before_start_title_string">Prima di giocare</string>
     <string name="before_start_text_string">Prima di giocare per la prima volta, notate le differenze tra le facce sulle carte: nasi, cappelli, occhiali, capelli barbe, i baffl e molti altri dettagli sono tutti differenti in
 ogni personaggio.</string>
     <string name="how_play_title_string">How to play</string>
-    <string name="how_play_text_string">Mescolate le carte gialle e prendetene una ciascuno.</string>
+    <string name="how_play_text_string1">Iniziate la partita cliccando sul tasto “Nuova Partita” e avviate la connessione Bluethoot con il dispositivo avversario. E’ disponibile la ricerca dei dispositivi, oppure l’attivazione della visibilità del dispositivo stessi. </string>
+    <string name="how_play_text_string2">Una volta stabilita la connessione ad ogni giocatore viene richiesto di scegliere in modo random un personaggio tra quelli disponibili nel gioco. Il personaggio che viene visualizzato è quello che l’avversario deve indovinare per potersi considerare il vincitore. </string>
+    <string name="how_play_text_string3">Successivamente viene visualizzat il tabellone di gioco.</string><string name="how_play_text_string4">A turno i giocatori compongono una domanda e la inviano all avversario. Alle domande e consentito rispondere solo con si o no. </string><string name="how_play_text_string5">Se pensate di conoscere il personaggio del vostro avversario, potete provare ad indovinare, ma dovrete farlo prima di porgli la domanda, perché il provare ad indovinare rappresenta un turno completo. State attenti! Se non indovinate perdete la partita!</string>
     <string name="winner_title_string">Vincitore</string>
     <string name="winner_text_string">Il vincitore è colui che indovina per primo il nome del personaggio dell avversario.</string>
     <string name="choose_question_category">Scegli la categoria di domanda...</string>
@@ -102,5 +102,9 @@ ogni personaggio.</string>
     <string name="color_black_singular">Nero</string>
     <string name="color_black_plural">Neri</string>
     <string name="color_black_female">Nera</string>
+    
+    
+    
+    
 
 </resources>

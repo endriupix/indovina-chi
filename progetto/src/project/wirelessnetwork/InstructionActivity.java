@@ -35,7 +35,7 @@ public class InstructionActivity extends Activity {
 				+ getString(R.string.how_play_title_string) 
 				+ "</p> </b>"
 				+ "<p align=\"justify\">"                
-				+ getString(R.string.how_play_text_string) 
+				+ getString(R.string.how_play_text_string1) 
 				+ "</p> "
 				+ "<b><p align=\"center\">"                
 				+ getString(R.string.winner_title_string) 
