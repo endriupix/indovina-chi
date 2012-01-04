@@ -8,6 +8,9 @@ import android.widget.Button;
 
 public class ChoiceFaceActivity extends Activity {
 	
+	//aggiungere campo per id dell'immagine scelta che userò
+	//nell'activity newgameactivity
+	private int imageID = R.drawable.chi_alex;
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,6 +21,7 @@ public class ChoiceFaceActivity extends Activity {
 			
 			public void onClick(View v) {
 				// avvia conteggio random e visualizza immagine corrispondente al numero generato
+				
 			}
 		});
         
@@ -26,8 +30,10 @@ public class ChoiceFaceActivity extends Activity {
         btnStart.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
-				Intent actNewGame = new Intent(v.getContext(), NewGameActivity.class);
-				v.getContext().startActivity(actNewGame);
+				Intent intent = new Intent();
+				intent.putExtra(NewGameActivity.IMAGE_OWN_FACE, imageID);
+				setResult(Activity.RESULT_OK, intent);
+				finish();
 			}
 		});
     }

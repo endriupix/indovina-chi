@@ -31,5 +31,23 @@
   		android:layout_width="fill_parent"
   		android:layout_height="wrap_content"
   		android:text="Poni domanda"/>
+  		
+  	<Button 
+  		android:id="@+id/btn_who_is"
+  		android:layout_width="fill_parent"
+  		android:layout_height="wrap_content"
+  		android:text="Chi è?" />
+  		
+  	<Button
+  		android:id="@+id/btn_read_answer"
+  		android:layout_width="fill_parent"
+  		android:layout_height="wrap_content"
+  		android:text="Leggi risposta" />
+  	
+  	<Button
+  		android:id="@+id/btn_read_question"
+  		android:layout_width="fill_parent"
+  		android:layout_height="wrap_content"
+  		android:text="Una domanda per te" />
 </LinearLayout>
 </LinearLayout>
