@@ -69,14 +69,14 @@ public class MakeQuestionActivity extends Activity implements OnItemSelectedList
 		if (firstTime) { firstTime = false; return; }
 		
 		firstStepString = categories[position];
-		secondSpinner.setVisibility(0);
-		textSecondSpinner.setVisibility(0);
-		btnMakeQuestion.setVisibility(0);
+		secondSpinner.setVisibility(View.VISIBLE);
+		textSecondSpinner.setVisibility(View.VISIBLE);
+		btnMakeQuestion.setVisibility(View.VISIBLE);
 		
 		if (firstStepString.equals(resources.getString(R.string.no_one_choosed))) {
-			secondSpinner.setVisibility(1);
-			textSecondSpinner.setVisibility(1);
-			btnMakeQuestion.setVisibility(1);
+			secondSpinner.setVisibility(View.INVISIBLE);
+			textSecondSpinner.setVisibility(View.INVISIBLE);
+			btnMakeQuestion.setVisibility(View.INVISIBLE);
 		}
 		if (firstStepString.equals(resources.getString(R.string.category_sex))) {
 			secondOptions = resources.getStringArray(R.array.category_sex);
@@ -108,9 +108,9 @@ public class MakeQuestionActivity extends Activity implements OnItemSelectedList
 
 	public void onNothingSelected(AdapterView<?> arg0) {
 		
-		secondSpinner.setVisibility(1);
-		textSecondSpinner.setVisibility(1);
-		btnMakeQuestion.setVisibility(1);
+		secondSpinner.setVisibility(View.INVISIBLE);
+		textSecondSpinner.setVisibility(View.INVISIBLE);
+		btnMakeQuestion.setVisibility(View.INVISIBLE);
 		
 	}
 	

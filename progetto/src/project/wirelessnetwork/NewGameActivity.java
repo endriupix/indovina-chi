@@ -1,9 +1,14 @@
 package project.wirelessnetwork;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+
+import dialogs.ShowAnswerDialog;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -52,8 +57,13 @@ public class NewGameActivity extends Activity {
 	private int ownFaceID; 
 	private int indexOwnFace;
 	private BluetoothConnectionManager connectionManager;
-	private String lastQuestionMade;
+	private String lastQuestionMade = "Porta il cappello?";
 	private String lastQuestionReceived = "ha i capelli arancioni?";
+	private String lastAnswerReceived = "Si";
+	
+	protected void setState(int newState) {
+		state = newState;
+	}
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -108,7 +118,7 @@ public class NewGameActivity extends Activity {
 				container.addView(imgView);
 				row.addView(container);
 			}
-			TableLayout table = (TableLayout) findViewById(R.id.table_layout);
+			TableLayout table = (TableLayout)findViewById(R.id.table_layout);
 			table.addView(row, new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 		}
 		
@@ -136,9 +146,23 @@ public class NewGameActivity extends Activity {
 			}
 		});
 		
+		Button btnGuessWho = (Button)findViewById(R.id.btn_who_is);
+		btnGuessWho.setOnClickListener(new GuessWhoListener());
 		
 		Button btnReadAnswer = (Button)findViewById(R.id.btn_read_answer);
-		btnReadAnswer.setEnabled(false);
+		//btnReadAnswer.setEnabled(false);
+		btnReadAnswer.setOnClickListener(new View.OnClickListener() {
+			
+			public void onClick(View v) {
+				
+				final ShowAnswerDialog answerDialog = new ShowAnswerDialog(NewGameActivity.this);
+				answerDialog.setQuestion(lastQuestionMade);
+				answerDialog.setAnswer(lastAnswerReceived);
+				
+				answerDialog.show();
+				
+			}
+		});
 		
 		Button btnReadQuestion = (Button)findViewById(R.id.btn_read_question);
 		//btnReadQuestion.setEnabled(false);
@@ -149,22 +173,24 @@ public class NewGameActivity extends Activity {
 			 */
 			public void onClick(View v) {
 				
-				Context context = getApplicationContext();
-				Dialog questionDialog = new Dialog(NewGameActivity.this);
+				final Dialog questionDialog = new Dialog(NewGameActivity.this);
 				questionDialog.setContentView(R.layout.dialog_answer_question);
 				questionDialog.setTitle("Una domanda per te..");
 				
 				Button btnYes = (Button)questionDialog.findViewById(R.id.btn_answer_yes);
-				Log.d("Prova", new Boolean(btnYes!=null).toString());
 				Button btnNo = (Button)questionDialog.findViewById(R.id.btn_answer_no);
-				Log.d("Prova", new Boolean(btnNo!=null).toString());
+				
 				btnYes.setOnClickListener(new OnClickListener() {
 					
 					public void onClick(View v) {
 						
 						String answer = "Si";
-						connectionManager.write(answer.getBytes());
+						Log.d("Answer Question", answer);
 						
+						if (connectionManager != null) {
+							connectionManager.write(answer.getBytes());
+						}
+						questionDialog.dismiss();
 					}
 				});
 				btnNo.setOnClickListener(new OnClickListener() {
@@ -172,8 +198,12 @@ public class NewGameActivity extends Activity {
 					public void onClick(View v) {
 						
 						String answer = "No";
-						connectionManager.write(answer.getBytes());
+						Log.d("Answer Question", answer);
 						
+						if (connectionManager != null) {
+							connectionManager.write(answer.getBytes());
+						}
+						questionDialog.dismiss();
 					}
 				});
 				
@@ -188,37 +218,51 @@ public class NewGameActivity extends Activity {
 			}
 		});
 		
-		//connectionManager.setHandlerRead(handlerRead);
+		if (connectionManager != null) {
+			connectionManager.setHandlerRead(handlerRead);
+		}
         
+		/**
+		 * Avvio activity per scelta del personaggio associato al giocatore 
+		 */
 		Intent intent = new Intent(this, ChoiceFaceActivity.class);
 		startActivityForResult(intent, CODE_CHOOSE_FACE);
-		/* Devo avviare activity per determinare personaggio che viene assegnato al giocatore */
     }
-	
-	public void onStart() {
-		super.onStart();
-		
-		
-	}
 	
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		Log.d(TAG, "OnActivityResult");
 		
 		switch(requestCode) {
 		
+		/**
+		 * Operazione composizione domanda conclusa correttamente, ho domanda pronta da inviare
+		 */
 		case CODE_COMPOSE_QUESTION:
 			
 			if (resultCode == Activity.RESULT_OK) {
 				
 				Button btnMakeQuestion = (Button) findViewById(R.id.btn_make_question);
 				btnMakeQuestion.setEnabled(false);
+				Button btnWhoIs = (Button)findViewById(R.id.btn_who_is);
+				btnWhoIs.setEnabled(false);
 				lastQuestionMade = data.getExtras().getString(COMPOSED_QUESTION);
 				Log.d(TAG, lastQuestionMade);
-				//connectionManager.write(lastQuestion.getBytes());
+				
+				if (connectionManager != null) {
+					Log.d(TAG, "Write on ConnectionManager");
+					connectionManager.write(lastQuestionMade.getBytes());
+				}
+				
+				Button btnReadAnswer = (Button)findViewById(R.id.btn_read_answer);
+				btnReadAnswer.setEnabled(true);
 			}
 			
 			break;
 			
+		/**
+		 * Assegnato personaggio all'utente, recupero ID e cerco sua posizione
+		 * all'interno dell'array delle facce
+		 */
 		case CODE_CHOOSE_FACE:
 			
 			if (resultCode == Activity.RESULT_OK) {
@@ -233,12 +277,13 @@ public class NewGameActivity extends Activity {
 			}
 			break;
 			
-		case GIVE_QUESTION_ANSWER: 
-			
-			break;
 		}
 	}
 	
+	/**
+	 * Handler che si occupa di ricevere i messaggi durante il gioco da parte 
+	 * dell'avversario
+	 */
 	private Handler handlerRead = new Handler() {
 		
 		public void handleMessage(Message msg) {
@@ -249,8 +294,14 @@ public class NewGameActivity extends Activity {
 				byte[] readBuff = (byte[]) msg.obj;
 				if (state == STATE_WAITING_ANSWER) {
 					// messaggio ottenuto è la risposta alla domanda
-					String answer = new String(readBuff, 0, msg.arg1);
-					//devo mandare answer a chi si occupa di mostrarla
+					
+					lastAnswerReceived = new String(readBuff, 0, msg.arg1);
+					
+					Button btnReadAnswer = (Button)findViewById(R.id.btn_read_answer);
+					btnReadAnswer.setEnabled(true);
+					btnReadAnswer.setBackgroundResource(R.drawable.button_shape);
+					
+					setState(STATE_WAITING_QUESTION);
 					
 				}
 				if (state == STATE_WAITING_QUESTION) {
@@ -258,9 +309,59 @@ public class NewGameActivity extends Activity {
 					String question = new String(readBuff, 0, msg.arg1);
 					lastQuestionReceived = question;
 					
+					Log.d(TAG, "Domada ricevuta: ".concat(question));
+					
+					// Attivo bottone per permettere al giocatore di rispondere
+					Button btnQuestion = (Button)findViewById(R.id.btn_read_question);
+					btnQuestion.setEnabled(true);
+					btnQuestion.setBackgroundResource(R.drawable.button_shape);
+					
 				}
 				break;
 			}
 		}
 	};
+	
+	private class GuessWhoListener implements View.OnClickListener {
+
+		public void onClick(View v) {
+			
+			
+			
+			/*Dialog guessWhoDialog = new GuessWhoDialog(NewGameActivity.this, validNames);
+			guessWhoDialog.setTitle("Chi e\' ??");
+			
+			guessWhoDialog.show();*/
+			
+			List<String> validNames = new ArrayList<String>();
+			
+			for (int i = 0; i < faces.length; i++) {
+				
+				if (faces[i].isChoosable()) {
+					validNames.add(faces[i].getFaceName());
+				}
+			}
+			
+			final String[] names = new String[validNames.size()];
+			
+			for (int i = 0; i < validNames.size(); i++) {
+				names[i] = validNames.get(i);
+			}
+			
+			AlertDialog.Builder builder = new AlertDialog.Builder(NewGameActivity.this);
+			builder.setTitle("Chi e' ??");
+			builder.setSingleChoiceItems(names, -1, new DialogInterface.OnClickListener() {
+			    public void onClick(DialogInterface dialog, int item) {
+			        
+			    	Log.d(TAG, "Supposto: ".concat(names[item]));
+			    	
+			    	dialog.dismiss();
+			    }
+			});
+			AlertDialog alert = builder.create();
+			alert.show();
+			
+		}
+		
+	}
 }

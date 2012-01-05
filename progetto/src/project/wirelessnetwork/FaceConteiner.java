@@ -45,6 +45,9 @@ public class FaceConteiner extends ImageView implements Checkable {
 		choosable = false;
 		((View)getParent()).setBackgroundResource(R.color.image_not_selected);
 	}
-		
+	
+	public String getFaceName() {
+		return faceName;
+	}
 
 }
