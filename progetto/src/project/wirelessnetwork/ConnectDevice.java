@@ -14,7 +14,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class ConnectDevice extends Activity {
@@ -220,7 +219,7 @@ public class ConnectDevice extends Activity {
                     break;
                 }
                 break;
-            case MESSAGE_WRITE:
+            /*case MESSAGE_WRITE:
                 byte[] writeBuf = (byte[]) msg.obj;
                 // construct a string from the buffer
                 
@@ -229,7 +228,7 @@ public class ConnectDevice extends Activity {
                 byte[] readBuf = (byte[]) msg.obj;
                 // construct a string from the valid bytes in the buffer
                 
-                break;
+                break;*/
             case MESSAGE_DEVICE_NAME:
                 // save the connected device's name
                 connectedDevice = msg.getData().getString(DEVICE_NAME);

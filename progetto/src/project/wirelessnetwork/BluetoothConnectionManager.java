@@ -344,7 +344,7 @@ public class BluetoothConnectionManager {
 				try {
 					
 					bytes = inputStream.read(buffer);
-					handler.obtainMessage(ConnectDevice.MESSAGE_READ, bytes, -1, buffer).sendToTarget();
+					handlerRead.obtainMessage(ConnectDevice.MESSAGE_READ, bytes, -1, buffer).sendToTarget();
 				}
 				catch(IOException ex) {
 					Log.d(TAG, "Lost run ConnectedThread" + ex.getMessage());
@@ -358,7 +358,7 @@ public class BluetoothConnectionManager {
 			try {
 				
 				outputStream.write(buffer);
-				handler.obtainMessage(ConnectDevice.MESSAGE_WRITE, -1, -1, buffer).sendToTarget();
+				//handler.obtainMessage(ConnectDevice.MESSAGE_WRITE, -1, -1, buffer).sendToTarget();
 			}
 			catch(IOException exc) { 
 				//Log
