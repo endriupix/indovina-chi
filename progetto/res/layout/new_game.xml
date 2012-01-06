@@ -8,7 +8,7 @@
     android:layout_height="fill_parent"
     android:layout_weight="4">
 <TableLayout 
-    android:id="@+id/table_layout"
+    android:id="@+id/table_faces_layout"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
    	>

@@ -121,6 +121,7 @@ public class ConnectDevice extends Activity {
 			if (bluetoothAdapter.getScanMode() != BluetoothAdapter.SCAN_MODE_CONNECTABLE_DISCOVERABLE) {
 	            Intent discoverableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
 	            discoverableIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300);
+	            NewGameActivity.starter = false;
 	            startActivity(discoverableIntent);
 			}
 		}
@@ -169,6 +170,8 @@ public class ConnectDevice extends Activity {
 				
 				Log.d(TAG, "REQUEST_CONNECT OK");
 				
+				NewGameActivity.starter = true;
+				
 				String address = data.getExtras().getString(DeviceListActivity.EXTRA_DEVICE_ADDRESS);
 				Log.d("ADDRESS DEVICE", address);
 				BluetoothDevice device = bluetoothAdapter.getRemoteDevice(address);
@@ -206,7 +209,7 @@ public class ConnectDevice extends Activity {
                 switch (msg.arg1) {
                 case BluetoothConnectionManager.STATE_CONNECTED:
                 	Log.d(TAG, "STATE_CONNECTED");
-                	//devo iniziare activity xke ho stabilito connessione
+                	//devo iniziare activity del gioco perchè ho stabilito connessione
                 	Intent newGame = new Intent(ConnectDevice.this, NewGameActivity.class);
                 	startActivity(newGame);
                     break;
