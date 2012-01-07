@@ -23,7 +23,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ChoiceFaceActivity" android:screenOrientation="landscape"></activity>
+        <activity android:name=".ChoiceFaceActivity" android:screenOrientation="landscape" android:label="Scegli il tuo personaggio nascosto"></activity>
         <activity android:name=".NewGameActivity" android:screenOrientation="landscape"></activity>
         <activity android:name=".ConnectDevice" android:screenOrientation="landscape"></activity>
         <activity android:name=".DeviceListActivity" android:screenOrientation="landscape"
@@ -31,10 +31,12 @@
             android:configChanges="orientation|keyboardHidden"></activity>
         <activity 
             android:screenOrientation="landscape"
-            android:name=".StoryActivity" ></activity>
+            android:name=".StoryActivity"
+            android:label="Un po' di storia" ></activity>
         <activity 
             android:screenOrientation="landscape"
-            android:name=".InstructionActivity"></activity>
+            android:name=".InstructionActivity"
+            android:label="Istruzioni"></activity>
         <activity 
             android:screenOrientation="landscape"
             android:name=".MakeQuestionActivity"

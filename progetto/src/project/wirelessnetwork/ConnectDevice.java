@@ -22,6 +22,7 @@ public class ConnectDevice extends Activity {
 	
 	private final int REQUEST_ENABLE_BT = 2;
 	private final int REQUEST_CONNECT = 1;
+	private final int GAME_ACTIVITY_RESULT = 3;
 	
 	Intent intentSearch = null;
 	
@@ -193,7 +194,16 @@ public class ConnectDevice extends Activity {
                 finish();
 			}
 			break;
+			
+		/**
+		 * Activity del gioco finita, termino anche activity che gestisce connessione bluetooth
+		 */
+		case GAME_ACTIVITY_RESULT:
+			
+			finish();
+			break;
 		}
+		
 	}
 	
 	private final Handler mHandler = new Handler() {
@@ -211,7 +221,7 @@ public class ConnectDevice extends Activity {
                 	Log.d(TAG, "STATE_CONNECTED");
                 	//devo iniziare activity del gioco perchè ho stabilito connessione
                 	Intent newGame = new Intent(ConnectDevice.this, NewGameActivity.class);
-                	startActivity(newGame);
+                	startActivityForResult(newGame, GAME_ACTIVITY_RESULT);
                     break;
                 case BluetoothConnectionManager.STATE_CONNECTING:
                     //connecting al dispositivo
