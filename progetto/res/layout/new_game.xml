@@ -4,6 +4,7 @@
     android:layout_height="fill_parent"
     android:orientation="horizontal" >
 <ScrollView 
+	android:id="@+id/scrollview_game"
     android:layout_width="0dip"
     android:layout_height="fill_parent"
     android:layout_weight="4">

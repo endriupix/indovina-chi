@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.Display;
 import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -31,8 +32,10 @@ import android.widget.Toast;
 public class NewGameActivity extends Activity {
 	
 	private String TAG = "GAME_MANAGER";
+	private String TAG_CLOSED_GAME = "CLOSED_GAME";
 	
 	public static boolean starter = false;
+	public static boolean gameEnded = false;
 	
 	public static final String COMPOSED_QUESTION = "COMPOSED_QUESTION";
 	public static final String IMAGE_OWN_FACE = "OWN_FACE";
@@ -50,7 +53,7 @@ public class NewGameActivity extends Activity {
 	
 	private int state = 0;
 	
-	private Integer[] facesID = {R.drawable.chi_alex, R.drawable.chi_alfred, 
+	private static Integer[] facesID = {R.drawable.chi_alex, R.drawable.chi_alfred, 
 			R.drawable.chi_anita, R.drawable.chi_anne, R.drawable.chi_bernard, 
 			R.drawable.chi_bill, R.drawable.chi_charles, R.drawable.chi_claire,
 			R.drawable.chi_david, R.drawable.chi_eric, R.drawable.chi_frans,
@@ -59,7 +62,7 @@ public class NewGameActivity extends Activity {
 			R.drawable.chi_peter, R.drawable.chi_philip, R.drawable.chi_richard, 
 			R.drawable.chi_robert, R.drawable.chi_sam, R.drawable.chi_susan, R.drawable.chi_tom};
 	
-	private String names[];
+	private static String names[];
 	private FaceConteiner[] faces;
 	private int ownFaceID; 
 	private int indexOwnFace;
@@ -84,8 +87,23 @@ public class NewGameActivity extends Activity {
         
         names = this.getResources().getStringArray(R.array.images_name);
 		faces = new FaceConteiner[facesID.length];
-		
+		int padding = 10;
 		int facesPerRow = 4;
+		
+		Display display = getWindowManager().getDefaultDisplay();
+		
+		int width = display.getWidth();
+		
+		int screenForBoard = width * 75 / 100;
+		
+		int imageWidth = (screenForBoard - facesPerRow * (2*padding)) / facesPerRow;  
+		int imageHeight = imageWidth + (imageWidth * 25) / 100;
+		
+		Log.d("Spazio", new Integer(screenForBoard).toString());
+		Log.d("Spazio", new Integer(imageWidth).toString());
+		Log.d("Spazio", new Integer(imageHeight).toString());
+		
+		
 		int totalRows = facesID.length / facesPerRow;
 		if ((facesID.length % facesPerRow) != 0) {
 			totalRows++;
@@ -200,6 +218,13 @@ public class NewGameActivity extends Activity {
 		if (connectionManager != null) {
 			connectionManager.setHandlerRead(handlerRead);
 		}
+		
+		/**
+		 * Setto stato a STATE_WAITING_QUESTION per giocatore che non inizia per primo
+		 */
+		if (!starter) {
+			setState(STATE_WAITING_QUESTION);
+		}
         
 		/**
 		 * Avvio activity per scelta del personaggio associato al giocatore 
@@ -207,6 +232,18 @@ public class NewGameActivity extends Activity {
 		Intent intent = new Intent(this, ChoiceFaceActivity.class);
 		startActivityForResult(intent, CODE_CHOOSE_FACE);
     }
+	
+	public static int getTotalFaces() {
+		return facesID.length;
+	}
+	
+	public static int getFaceID(int position) {
+		return facesID[position];
+	}
+	
+	public static String getFaceName(int position) {
+		return names[position];
+	}
 	
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		Log.d(TAG, "OnActivityResult");
@@ -279,6 +316,8 @@ public class NewGameActivity extends Activity {
 		
 		public void handleMessage(Message msg) {
 			
+			try {
+				
 			switch(msg.what) {
 			
 			case MESSAGE_READ:
@@ -287,6 +326,10 @@ public class NewGameActivity extends Activity {
 					// messaggio ottenuto è la risposta alla domanda
 					
 					lastAnswerReceived = new String(readBuff, 0, msg.arg1);
+					
+					if (lastAnswerReceived.indexOf(TAG_CLOSED_GAME) != -1) {
+						throw new Exception();
+					}
 					
 					Button btnReadAnswer = (Button)findViewById(R.id.btn_read_answer);
 					btnReadAnswer.setEnabled(true);
@@ -299,6 +342,10 @@ public class NewGameActivity extends Activity {
 					//messaggio ricevuto è la domanda posta dall'utente
 					String question = new String(readBuff, 0, msg.arg1);
 					lastQuestionReceived = question;
+					
+					if (lastQuestionReceived.indexOf(TAG_CLOSED_GAME) != -1) {
+						throw new Exception();
+					}
 					
 					Log.d(TAG, "Domada ricevuta: ".concat(question));
 					
@@ -335,6 +382,10 @@ public class NewGameActivity extends Activity {
 					Log.d(TAG, "Risultato Ipotesi Faccia");
 					//messaggio ricevuto è esito della supposizione = "Si" o "No"
 					String result = new String(readBuff, 0, msg.arg1);
+					
+					if (result.indexOf(TAG_CLOSED_GAME) != -1) {
+						throw new Exception();
+					}
 					
 					if (result.equals("Si")) {
 						Log.d(TAG, "Indovinato");
@@ -388,6 +439,53 @@ public class NewGameActivity extends Activity {
 				}
 				
 				Log.d(TAG, "Supposizione Faccia Completa");
+			
+			/**
+			 * Bluetooth Failure. Partita interrotta
+			 */
+			case ConnectDevice.MESSAGE_TOAST:
+				
+				Log.d(TAG, "Bluetooth Failure, Closing game");
+				AlertDialog.Builder builder = new AlertDialog.Builder(NewGameActivity.this);
+				
+				builder.setTitle("Partita Interrotta");
+				builder.setMessage("Partita interrotta per un problema di connessione")
+					.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+						
+						public void onClick(DialogInterface dialog, int which) {
+							
+							closeGame();
+							dialog.dismiss();
+						}
+					});
+				
+				AlertDialog alert = builder.create();
+				alert.show();
+			}
+			}
+			/**
+			 * Eccezione lanciata se nel messaggio ricevuto c'è il tag di 
+			 * chiusura partita, il che vuol dire che l'avversario ha deciso 
+			 * di interrompere partita. 
+			 */
+			catch(Exception exc) {
+				Log.d(TAG, "Exception in HANDLER. Stopping game");
+				
+				AlertDialog.Builder builder = new AlertDialog.Builder(NewGameActivity.this);
+				
+				builder.setTitle("Partita Interrotta");
+				builder.setMessage("Il tuo avversario ha deciso di interrompere la partita")
+					.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+						
+						public void onClick(DialogInterface dialog, int which) {
+							
+							closeGame();
+							dialog.dismiss();
+						}
+					});
+				
+				AlertDialog alert = builder.create();
+				alert.show();
 			}
 		}
 	};
@@ -415,6 +513,44 @@ public class NewGameActivity extends Activity {
 			}
 		}
 		
+		gameEnded = true;
+		
+	}
+
+	@Override
+	public void onBackPressed() {
+		Log.d(TAG, "Back Button Pressed");
+		
+		if (gameEnded) {
+			finish();
+		}
+		else {
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			
+			builder.setTitle("Sicuro ??");
+			builder.setMessage("Sei sicuro di voler uscire dalla partita??")
+				.setPositiveButton("Si !", new DialogInterface.OnClickListener() {
+					
+					public void onClick(DialogInterface dialog, int which) {
+						
+						/**
+						 * Invio messaggio di fine partita all'altro giocatore
+						 */
+						dialog.dismiss();
+						finish();
+					}
+				}).
+				setNegativeButton("No !", new DialogInterface.OnClickListener() {
+					
+					public void onClick(DialogInterface dialog, int which) {
+						
+						dialog.dismiss();
+					}
+				});
+			
+			AlertDialog alert = builder.create();
+			alert.show();
+		}
 	}
 	
 	/**

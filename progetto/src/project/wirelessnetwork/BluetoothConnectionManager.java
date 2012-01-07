@@ -170,7 +170,12 @@ public class BluetoothConnectionManager {
 		bundle.putString(ConnectDevice.TOAST, "Connection Lost");
 		bundle.putInt(ConnectDevice.TYPE_OF_FAILURE, ConnectDevice.CONNECTION_LOST);
 		msg.setData(bundle);
-		handler.sendMessage(msg);
+		if (handlerRead != null) {
+			handlerRead.sendMessage(msg);
+		}
+		else {
+			handler.sendMessage(msg);
+		}
 		
 	}
 	
