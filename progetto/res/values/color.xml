@@ -2,7 +2,5 @@
     <resources>
         <color name="image_selected">#FF4000</color>
         <color name="image_not_selected">#000000</color>
-        <color name="background">#000000</color>
-        <color name="textColor">#cc99ff</color>
         <color name="button_new_message">#FF4000</color>
     </resources>

@@ -12,31 +12,30 @@
     <string name="istruction">Scoprire chi é il personaggio raffigurato sulla carta gialla del vostro avversario prima che lui indovini ilpersoneggio raffigurato sulla vostra.</string>
 
         
-    <string name="title_paired_devices">Paired devices</string>
-    <string name="title_other_devices">Other devices</string>
-    <string name="button_scan">Scan for devices</string>
-    <string name="none_paired">No devices have been paired</string>
-    <string name="none_found">No devices found</string>
-    <string name="scanning">Searching for devices</string>
-    <string name="select_device">Select a device to connect</string>
-    <string name="option_find_user">Find opponent</string>
-    <string name="option_make_discoverable">Make discoverable</string>
-    <string name="connecting">Connecting ...</string>
-    <string name="waiting">Waiting ...</string>
-    <string name="title_bt_not_supported">Bluetooth not supported</string>
-    <string name="text_bt_not_supported">Bluetooth not supported. You cannot play this game without Bluetooth.</string>
-    <string name="bt_not_enabled_leaving">BT is necessary</string>
+    <string name="title_paired_devices">Dispositivo associati</string>
+    <string name="title_other_devices">Altri dispositivi</string>
+    <string name="button_scan">Ricerca dispositivo</string>
+    <string name="none_paired">Nessun dispositivo è stato associato</string>
+    <string name="none_found">Nessun dispositivo trovato</string>
+    <string name="scanning">Ricerca dispositivi</string>
+    <string name="select_device">Seleziona un dispositivo per la connesssione</string>
+    <string name="option_find_user">Cerca avversario</string>
+    <string name="option_make_discoverable">Rendi visibile</string>
+    <string name="connecting">Connessione ...</string>
+    <string name="waiting">Attendi ...</string>
+    <string name="title_bt_not_supported">Bluetooth non supportato</string>
+    <string name="text_bt_not_supported">Bluetooth non supportato. Non è  possibile giocare con questo gioco senza il Bluetooth.</string>
+    <string name="bt_not_enabled_leaving">Bluetooth necessario</string>
     <string name="goal_game_title_string">Scopo del gioco</string>
-    <string name="goal_game_text_string">Scoprire chi é il personaggio raffigurato sulla carta gialla del vostro avversario prima che lui indovini ilpersoneggio raffigurato sulla vostra.</string>
+    <string name="goal_game_text_string">Scoprire chi &amp;eacute; il personaggio raffigurato sulla carta gialla del vostro avversario prima che lui indovini il personaggio raffigurato sulla vostra.</string>
     <string name="before_start_title_string">Prima di giocare</string>
-    <string name="before_start_text_string">Prima di giocare per la prima volta, notate le differenze tra le facce sulle carte: nasi, cappelli, occhiali, capelli barbe, i baffl e molti altri dettagli sono tutti differenti in
+    <string name="before_start_text_string">Prima di giocare per la prima volta, notate le differenze tra le facce sulle carte: nasi, cappelli, occhiali, capelli, barbe, baffl e molti altri dettagli sono tutti differenti in
 ogni personaggio.</string>
-    <string name="how_play_title_string">How to play</string>
-    <string name="how_play_text_string1">Iniziate la partita cliccando sul tasto “Nuova Partita” e avviate la connessione Bluethoot con il dispositivo avversario. E’ disponibile la ricerca dei dispositivi, oppure l’attivazione della visibilità del dispositivo stessi. </string>
-    <string name="how_play_text_string2">Una volta stabilita la connessione ad ogni giocatore viene richiesto di scegliere in modo random un personaggio tra quelli disponibili nel gioco. Il personaggio che viene visualizzato è quello che l’avversario deve indovinare per potersi considerare il vincitore. </string>
-    <string name="how_play_text_string3">Successivamente viene visualizzat il tabellone di gioco.</string><string name="how_play_text_string4">A turno i giocatori compongono una domanda e la inviano all avversario. Alle domande e consentito rispondere solo con si o no. </string><string name="how_play_text_string5">Se pensate di conoscere il personaggio del vostro avversario, potete provare ad indovinare, ma dovrete farlo prima di porgli la domanda, perché il provare ad indovinare rappresenta un turno completo. State attenti! Se non indovinate perdete la partita!</string>
-    <string name="winner_title_string">Vincitore</string>
-    <string name="winner_text_string">Il vincitore è colui che indovina per primo il nome del personaggio dell avversario.</string>
+    <string name="how_play_title_string">Come si gioca</string>
+    <string name="how_play_text_string1">Iniziate la partita cliccando sul tasto &amp;ldquo;Nuova Partita&amp;rdquo; e avviate la connessione Bluethoot con il dispositivo avversario. &amp;Eacute; disponibile la ricerca dei dispositivi, oppure l’attivazione della visibilit&amp;agrave; del dispositivo stesso.</string>
+    <string name="how_play_text_string2">Una volta stabilita la connessione ad ogni giocatore viene richiesto di scegliere in modo random un personaggio tra quelli disponibili nel gioco. Il personaggio che viene visualizzato &amp;egrave; quello che l&amp;#180;avversario deve indovinare per potersi considerare il vincitore. </string>
+    <string name="how_play_text_string3">Successivamente viene visualizzato il tabellone di gioco. A turno i giocatori compongono una domanda e la inviano all&amp;#180;avversario. Alle domande &amp;egrave; consentito rispondere solamente con &amp;ldquo;si&amp;rdquo; o &amp;ldquo;no&amp;rdquo;. </string><string name="how_play_text_string4">Per esempio, chiedete all&amp;#180;avversario &amp;ldquo;il tuo personaggio porta il cappello?&amp;rdquo;, se risponde di &amp;ldquo;no&amp;rdquo;, potete eliminare tutte le persone con un cappello dal vostro tavolo di gioco selezionando i personaggi ed escludendoli con l&amp;#180;apposito tasto, mentre se risponde di &amp;ldquo;si&amp;rdquo; lasciate inalterato il tavolo.</string><string name="how_play_text_string5">Fate le domande a turno. Durante il gioco bisogna osservare le seguenti regole:</string><string name="how_play_text_string6">1- Se pensate di conoscere il personaggio del vostro avversario, potete provare ad indovinare, ma dovrete farlo prima di porgli la domanda, perch&amp;egrave; il provare ad indovinare rappresenta un turno completo. State attenti! Se non indovinate perdete la partita!</string><string name="how_play_text_string7">2- Il gioco continua fino a che un giocatore indovina chi &amp;egrave; il personaggio dell&amp;#180;avversario, o fino a quando uno dei 2 sbaglia ad indovinare.</string><string name="winner_title_string">Vincitore</string>
+    <string name="winner_text_string">Il vincitore &amp;egrave; colui che indovina per primo il nome del personaggio dell&amp;#180;avversario.</string>
     <string name="choose_question_category">Scegli la categoria di domanda...</string>
     
     <string name="string_choose_question">Scegli la domanda ...</string>
@@ -102,6 +101,9 @@ ogni personaggio.</string>
     <string name="color_black_singular">Nero</string>
     <string name="color_black_plural">Neri</string>
     <string name="color_black_female">Nera</string>
+    
+    
+    
     
     
     
