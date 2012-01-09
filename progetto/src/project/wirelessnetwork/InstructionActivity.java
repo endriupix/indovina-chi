@@ -3,7 +3,6 @@ package project.wirelessnetwork;
 import android.app.Activity;
 import android.os.Bundle;
 import android.webkit.WebView;
-import android.widget.LinearLayout;
 
 
 public class InstructionActivity extends Activity {
@@ -18,8 +17,8 @@ public class InstructionActivity extends Activity {
 
 		mWebView = (WebView) findViewById(R.id.webview);    
 
-		String text = "<html> <style type=\"text/css\"> p {color: #" + getString(R.color.background) + ";} </style>" 
-				+ "<body bgcolor=\"" + getString(R.color.textColor) +"\">"
+		String text = "<html> <style type=\"text/css\">p {color:#ffffff;} </style>" 
+				+ "<body bgcolor= #000000>"
 				+ "<b> <p align=\"center\">"                
 				+ getString(R.string.goal_game_title_string) 
 				+ "</p> </b>"
@@ -37,6 +36,20 @@ public class InstructionActivity extends Activity {
 				+ "</p> </b>"
 				+ "<p align=\"justify\">"                
 				+ getString(R.string.how_play_text_string1) 
+				+ "<br>"
+				+ getString(R.string.how_play_text_string2)
+				+ "<br>"
+				+ getString(R.string.how_play_text_string3) 
+				+ "<br>"
+				+ getString(R.string.how_play_text_string4) 
+				+ "<br>"
+				+ getString(R.string.how_play_text_string5) 
+				+ "<br>"
+				+ "<br>"
+				+ getString(R.string.how_play_text_string6) 
+				+ "<br>"
+				+ "<br>"
+				+ getString(R.string.how_play_text_string7) 
 				+ "</p> "
 				+ "<b><p align=\"center\">"                
 				+ getString(R.string.winner_title_string) 
