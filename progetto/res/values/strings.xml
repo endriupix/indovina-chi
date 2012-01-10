@@ -5,7 +5,7 @@
     <string name="exit_string">Chiudi</string>
     <string name="title_string">Indovina Chi?</string>
     <string name="instruction_string">Istruzioni</string>
-    <string name="story_string">Storia del gioco</string>
+    <string name="story_string">Storia dei personaggi</string>
     <string name="choice_face_string">Avvia scelta random</string>
     <string name="start_string">Start!</string>
     <string name="character_name_string">Il nome del personaggio è:</string>
@@ -32,7 +32,7 @@
     <string name="before_start_text_string">Prima di giocare per la prima volta, notate le differenze tra le facce sulle carte: nasi, cappelli, occhiali, capelli, barbe, baffl e molti altri dettagli sono tutti differenti in
 ogni personaggio.</string>
     <string name="how_play_title_string">Come si gioca</string>
-    <string name="how_play_text_string1">Iniziate la partita cliccando sul tasto &amp;ldquo;Nuova Partita&amp;rdquo; e avviate la connessione Bluethoot con il dispositivo avversario. &amp;Eacute; disponibile la ricerca dei dispositivi, oppure l’attivazione della visibilit&amp;agrave; del dispositivo stesso.</string>
+    <string name="how_play_text_string1">Iniziate la partita cliccando sul tasto &amp;ldquo;Nuova Partita&amp;rdquo; e avviate la connessione Bluethoot con il dispositivo avversario. &amp;Eacute; disponibile la ricerca dei dispositivi, oppure l&amp;#180;attivazione della visibilit&amp;agrave; del dispositivo stesso.</string>
     <string name="how_play_text_string2">Una volta stabilita la connessione ad ogni giocatore viene richiesto di scegliere in modo random un personaggio tra quelli disponibili nel gioco. Il personaggio che viene visualizzato &amp;egrave; quello che l&amp;#180;avversario deve indovinare per potersi considerare il vincitore. </string>
     <string name="how_play_text_string3">Successivamente viene visualizzato il tabellone di gioco. A turno i giocatori compongono una domanda e la inviano all&amp;#180;avversario. Alle domande &amp;egrave; consentito rispondere solamente con &amp;ldquo;si&amp;rdquo; o &amp;ldquo;no&amp;rdquo;. </string><string name="how_play_text_string4">Per esempio, chiedete all&amp;#180;avversario &amp;ldquo;il tuo personaggio porta il cappello?&amp;rdquo;, se risponde di &amp;ldquo;no&amp;rdquo;, potete eliminare tutte le persone con un cappello dal vostro tavolo di gioco selezionando i personaggi ed escludendoli con l&amp;#180;apposito tasto, mentre se risponde di &amp;ldquo;si&amp;rdquo; lasciate inalterato il tavolo.</string><string name="how_play_text_string5">Fate le domande a turno. Durante il gioco bisogna osservare le seguenti regole:</string><string name="how_play_text_string6">1- Se pensate di conoscere il personaggio del vostro avversario, potete provare ad indovinare, ma dovrete farlo prima di porgli la domanda, perch&amp;egrave; il provare ad indovinare rappresenta un turno completo. State attenti! Se non indovinate perdete la partita!</string><string name="how_play_text_string7">2- Il gioco continua fino a che un giocatore indovina chi &amp;egrave; il personaggio dell&amp;#180;avversario, o fino a quando uno dei 2 sbaglia ad indovinare.</string><string name="winner_title_string">Vincitore</string>
     <string name="winner_text_string">Il vincitore &amp;egrave; colui che indovina per primo il nome del personaggio dell&amp;#180;avversario.</string>
