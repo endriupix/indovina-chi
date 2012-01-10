@@ -19,21 +19,21 @@ public class InstructionActivity extends Activity {
 
 		String text = "<html> <style type=\"text/css\">p {color:#ffffff;} </style>" 
 				+ "<body bgcolor= #000000>"
-				+ "<b> <p align=\"center\">"                
+				+ "<b> <p align=\"center\"> <font size=\"5em\">"                
 				+ getString(R.string.goal_game_title_string) 
-				+ "</p> </b>"
+				+ "</font> </p> </b>"
 				+ "<p align=\"justify\">"                
 				+ getString(R.string.goal_game_text_string) 
 				+ "</p> "
-				+ "<b><p align=\"center\">"                
+				+ "<b><p align=\"center\"> <font size=\"5em\">"                
 				+ getString(R.string.before_start_title_string) 
-				+ "</p> </b>"
+				+ "</font> </p> </b>"
 				+ "<p align=\"justify\">"                
 				+ getString(R.string.before_start_text_string) 
 				+ "</p> "
-				+ "<b><p align=\"center\">"                
+				+ "<b><p align=\"center\"> <font size=\"5em\">"                
 				+ getString(R.string.how_play_title_string) 
-				+ "</p> </b>"
+				+ "</font> </p> </b>"
 				+ "<p align=\"justify\">"                
 				+ getString(R.string.how_play_text_string1) 
 				+ "<br>"
@@ -51,9 +51,9 @@ public class InstructionActivity extends Activity {
 				+ "<br>"
 				+ getString(R.string.how_play_text_string7) 
 				+ "</p> "
-				+ "<b><p align=\"center\">"                
+				+ "<b><p align=\"center\"> <font size=\"5em\">"               
 				+ getString(R.string.winner_title_string) 
-				+ "</p> </b>"
+				+ "</font> </p> </b>"
 				+ "<p align=\"justify\">"                
 				+ getString(R.string.winner_text_string) 
 				+ "</p> "

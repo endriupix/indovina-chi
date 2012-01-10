@@ -15,41 +15,63 @@
             android:layout_height="fill_parent"
             android:orientation="vertical" >
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:text="@string/title_string"
-                android:textSize="20dip" />
+            <ImageView
+                android:id="@+id/imageView1"
+                android:layout_width="165dp"
+                android:layout_height="62dp"
+                android:layout_gravity="center_horizontal"
+                android:src="@drawable/indovina_chi_title" />
 
-            <Button
-                android:id="@+id/newGame_button"
-                android:layout_width="fill_parent"
+            <TableLayout
+                android:id="@+id/tableLayout1"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dip"
-                android:text="@string/new_game_string" />
+                android:layout_marginTop="20dip"
+                android:gravity="center_horizontal" >
 
-            <Button
-                android:id="@+id/instruction_button"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="15dip"
-                android:text="@string/instruction_string" />
+                <TableRow
+                    android:id="@+id/tableRow1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="1"
+                    android:gravity="center_horizontal" >
 
-            <Button
-                android:id="@+id/story_button"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="15dip"
-                android:text="@string/story_string" />
+                    <Button
+                        android:id="@+id/newGame_button"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:text="@string/new_game_string" />
 
-            <Button
-                android:id="@+id/exit_button"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="15dip"
-                android:text="@string/exit_string" />
+                    <Button
+                        android:id="@+id/instruction_button"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:text="@string/instruction_string" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRow2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal" >
+
+                    <Button
+                        android:id="@+id/story_button"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:text="@string/story_string" />
+
+                    <Button
+                        android:id="@+id/exit_button"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:text="@string/exit_string" />
+                </TableRow>
+            </TableLayout>
         </LinearLayout>
     </ScrollView>
 
