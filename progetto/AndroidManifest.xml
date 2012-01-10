@@ -27,7 +27,7 @@
         <activity android:name=".NewGameActivity" android:screenOrientation="landscape"></activity>
         <activity android:name=".ConnectDevice" android:screenOrientation="landscape"></activity>
         <activity android:name=".DeviceListActivity" android:screenOrientation="landscape"
-            android:theme="@android:style/Theme.Dialog"
+            
             android:configChanges="orientation|keyboardHidden"></activity>
         <activity 
             android:screenOrientation="landscape"

@@ -62,13 +62,7 @@ public class ConnectDevice extends Activity {
 			finish();
 		}
 		
-	}
-	
-	public void onStart() {
-		super.onStart();
-		
-		Log.d(TAG, "++ onStart ++");
-		
+
 		if (!bluetoothAdapter.isEnabled()) {
 			Log.d(TAG, "BT non attivo");
 			Intent activateBluetoothIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
@@ -78,6 +72,14 @@ public class ConnectDevice extends Activity {
 			connectionManager = new BluetoothConnectionManager(ConnectDevice.this, mHandler);
 		}
 		
+	}
+	
+	public void onStart() {
+		super.onStart();
+		
+		Log.d(TAG, "++ onStart ++");
+		
+		if (connectionManager.getState() == 0) {
 		new AlertDialog.Builder(this).setTitle("Seleziona Opzione")
 				.setItems(R.array.options_bluetooth, new DialogInterface.OnClickListener() {
 					
@@ -90,6 +92,7 @@ public class ConnectDevice extends Activity {
 						}
 					}
 				}).show();
+		}
 	}
 	
 	public void onDestroy() {

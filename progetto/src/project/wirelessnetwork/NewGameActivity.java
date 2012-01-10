@@ -18,6 +18,7 @@ import android.os.Message;
 import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -67,10 +68,10 @@ public class NewGameActivity extends Activity {
 	private int ownFaceID; 
 	private int indexOwnFace;
 	private BluetoothConnectionManager connectionManager;
-	private String lastQuestionMade = "Porta il cappello?";
-	private String lastQuestionReceived = "ha i capelli arancioni?";
-	private String lastAnswerReceived = "Si";
-	private String faceSupposed = "Alfred";
+	private String lastQuestionMade;
+	private String lastQuestionReceived;
+	private String lastAnswerReceived;
+	private String faceSupposed;
 	private static String tagIndovino = "Indovino:";
 	
 	protected void setState(int newState) {
@@ -94,11 +95,13 @@ public class NewGameActivity extends Activity {
 		
 		int width = display.getWidth();
 		
-		int screenForBoard = width * 75 / 100;
+		int baseUnit = width / 5;
+		int screenForBoard = baseUnit * 4;
 		
-		int imageWidth = (screenForBoard - facesPerRow * (2*padding)) / facesPerRow;  
-		int imageHeight = imageWidth + (imageWidth * 25) / 100;
+		int imageWidth = screenForBoard / facesPerRow;  
+		int imageHeight = imageWidth + (imageWidth / 5) * 2 ;
 		
+		Log.d("Spazio", new Integer(width).toString());
 		Log.d("Spazio", new Integer(screenForBoard).toString());
 		Log.d("Spazio", new Integer(imageWidth).toString());
 		Log.d("Spazio", new Integer(imageHeight).toString());
@@ -122,8 +125,8 @@ public class NewGameActivity extends Activity {
 				FaceConteiner imgView = new FaceConteiner(names[i*facesPerRow + j], this);
 				faces[i*facesPerRow + j] = imgView;
 				imgView.setImageResource(facesID[i* facesPerRow + j]);
-				imgView.setPadding(10, 10, 10, 10);
-				imgView.setLayoutParams(new LayoutParams(75, 100, 5));
+				imgView.setPadding(padding, padding, padding, padding);
+				imgView.setLayoutParams(new LayoutParams(imageWidth, imageHeight, 5));
 				imgView.setClickable(true);
 				imgView.setOnClickListener(new OnClickListener() {
 					
@@ -193,8 +196,8 @@ public class NewGameActivity extends Activity {
 		 * Bottone "Leggi risposta" si occupa di visualizzare risposta 
 		 * ricevuta
 		 */
-		Button btnReadAnswer = (Button)findViewById(R.id.btn_read_answer);
-		//btnReadAnswer.setEnabled(false);
+		final Button btnReadAnswer = (Button)findViewById(R.id.btn_read_answer);
+		btnReadAnswer.setEnabled(false);
 		btnReadAnswer.setOnClickListener(new View.OnClickListener() {
 			
 			/**
@@ -202,17 +205,20 @@ public class NewGameActivity extends Activity {
 			 */
 			public void onClick(View v) {
 				
-				final ShowAnswerDialog answerDialog = new ShowAnswerDialog(NewGameActivity.this);
+				btnReadAnswer.setPressed(false);
+				ShowAnswerDialog answerDialog = new ShowAnswerDialog(NewGameActivity.this);
 				answerDialog.setQuestion(lastQuestionMade);
 				answerDialog.setAnswer(lastAnswerReceived);
 				
 				answerDialog.show();
 				
+				btnReadAnswer.setEnabled(false);
+				
 			}
 		});
 		
 		Button btnReadQuestion = (Button)findViewById(R.id.btn_read_question);
-		//btnReadQuestion.setEnabled(false);
+		btnReadQuestion.setEnabled(false);
 		btnReadQuestion.setOnClickListener(new ShowQuestionListener());
 		
 		if (connectionManager != null) {
@@ -224,6 +230,9 @@ public class NewGameActivity extends Activity {
 		 */
 		if (!starter) {
 			setState(STATE_WAITING_QUESTION);
+		}
+		else {
+			setState(STATE_MAKE_QUESTION);
 		}
         
 		/**
@@ -279,8 +288,7 @@ public class NewGameActivity extends Activity {
 				/**
 				 * Attivo bottone per leggere la risposta che verra' ricevuta
 				 */
-				Button btnReadAnswer = (Button)findViewById(R.id.btn_read_answer);
-				btnReadAnswer.setEnabled(true);
+				setState(STATE_WAITING_ANSWER);
 			}
 			
 			break;
@@ -312,18 +320,24 @@ public class NewGameActivity extends Activity {
 	 */
 	private Handler handlerRead = new Handler() {
 		
-		private String TAG = "Handler";
+		private String TAG = "Handler Read";
 		
 		public void handleMessage(Message msg) {
 			
 			try {
-				
+			
+			Log.d(TAG, "Ricevuto messaggio");
+			Log.d(TAG, new Integer(msg.what).toString());
 			switch(msg.what) {
 			
 			case MESSAGE_READ:
 				byte[] readBuff = (byte[]) msg.obj;
+				if (state == STATE_MAKE_QUESTION) {
+					throw new Exception();
+				}
 				if (state == STATE_WAITING_ANSWER) {
 					// messaggio ottenuto è la risposta alla domanda
+					Log.d(TAG, "STATE_WAITING_ANSWER");
 					
 					lastAnswerReceived = new String(readBuff, 0, msg.arg1);
 					
@@ -333,12 +347,13 @@ public class NewGameActivity extends Activity {
 					
 					Button btnReadAnswer = (Button)findViewById(R.id.btn_read_answer);
 					btnReadAnswer.setEnabled(true);
-					btnReadAnswer.setBackgroundResource(R.drawable.button_shape);
+					btnReadAnswer.setPressed(true);
 					
 					setState(STATE_WAITING_QUESTION);
-					
+					break;
 				}
 				if (state == STATE_WAITING_QUESTION) {
+					Log.d(TAG, "STATE_WAITING_QUESTION");
 					//messaggio ricevuto è la domanda posta dall'utente
 					String question = new String(readBuff, 0, msg.arg1);
 					lastQuestionReceived = question;
@@ -359,12 +374,14 @@ public class NewGameActivity extends Activity {
 							OtherPlayerGuessWhoDialog dialog = new OtherPlayerGuessWhoDialog(NewGameActivity.this);
 							dialog.setDialogInformations(ownFaceID, false, "", "");
 							dialog.show();
+							connectionManager.write(new String("Si").getBytes());
 						}
 						else {
 							//Avversario ha sbagliato, giocatore vince
 							OtherPlayerGuessWhoDialog dialog = new OtherPlayerGuessWhoDialog(NewGameActivity.this);
 							dialog.setDialogInformations(ownFaceID, true, supposedName, faces[indexOwnFace].getFaceName());
 							dialog.show();
+							connectionManager.write(faces[indexOwnFace].getFaceName().getBytes());
 						}
 						
 						closeGame();
@@ -373,7 +390,7 @@ public class NewGameActivity extends Activity {
 						// Attivo bottone per permettere al giocatore di rispondere
 						Button btnQuestion = (Button)findViewById(R.id.btn_read_question);
 						btnQuestion.setEnabled(true);
-						btnQuestion.setBackgroundResource(R.drawable.button_shape);
+						btnQuestion.setPressed(true);
 					}
 					
 				}
@@ -382,7 +399,7 @@ public class NewGameActivity extends Activity {
 					Log.d(TAG, "Risultato Ipotesi Faccia");
 					//messaggio ricevuto è esito della supposizione = "Si" o "No"
 					String result = new String(readBuff, 0, msg.arg1);
-					
+					Log.d("Risultato Ipotesi Faccia", result);
 					if (result.indexOf(TAG_CLOSED_GAME) != -1) {
 						throw new Exception();
 					}
@@ -439,11 +456,11 @@ public class NewGameActivity extends Activity {
 				}
 				
 				Log.d(TAG, "Supposizione Faccia Completa");
-			
+				break;
 			/**
 			 * Bluetooth Failure. Partita interrotta
 			 */
-			case ConnectDevice.MESSAGE_TOAST:
+			/*case ConnectDevice.MESSAGE_TOAST:
 				
 				Log.d(TAG, "Bluetooth Failure, Closing game");
 				AlertDialog.Builder builder = new AlertDialog.Builder(NewGameActivity.this);
@@ -461,6 +478,7 @@ public class NewGameActivity extends Activity {
 				
 				AlertDialog alert = builder.create();
 				alert.show();
+				break;*/
 			}
 			}
 			/**
@@ -469,7 +487,7 @@ public class NewGameActivity extends Activity {
 			 * di interrompere partita. 
 			 */
 			catch(Exception exc) {
-				Log.d(TAG, "Exception in HANDLER. Stopping game");
+				Log.d(TAG, "Exception in HANDLER. Stopping game ");
 				
 				AlertDialog.Builder builder = new AlertDialog.Builder(NewGameActivity.this);
 				
@@ -518,7 +536,9 @@ public class NewGameActivity extends Activity {
 	}
 
 	@Override
-	public void onBackPressed() {
+	//public void onBackPressed() {
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if ((keyCode == KeyEvent.KEYCODE_BACK)) {
 		Log.d(TAG, "Back Button Pressed");
 		
 		if (gameEnded) {
@@ -536,6 +556,8 @@ public class NewGameActivity extends Activity {
 						/**
 						 * Invio messaggio di fine partita all'altro giocatore
 						 */
+						Log.d(TAG, "Sending closing game");
+						connectionManager.write(TAG_CLOSED_GAME.getBytes());
 						dialog.dismiss();
 						finish();
 					}
@@ -550,7 +572,10 @@ public class NewGameActivity extends Activity {
 			
 			AlertDialog alert = builder.create();
 			alert.show();
+			return true;
 		}
+		}
+		return super.onKeyDown(keyCode, event);
 	}
 	
 	/**
@@ -587,7 +612,13 @@ public class NewGameActivity extends Activity {
 				}
 				
 				Button btnReadQuestion = (Button)findViewById(R.id.btn_read_question);
+				btnReadQuestion.setSelected(false);
 				btnReadQuestion.setEnabled(false);
+				
+				Button btnMakeQuestion = (Button)findViewById(R.id.btn_make_question);
+				btnMakeQuestion.setEnabled(true);
+				Button btnGuessWho = (Button)findViewById(R.id.btn_who_is);
+				btnGuessWho.setEnabled(true);
 				
 				dialog.dismiss();
 				
