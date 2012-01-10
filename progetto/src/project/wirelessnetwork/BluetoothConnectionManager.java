@@ -43,7 +43,8 @@ public class BluetoothConnectionManager {
 		this.handler = handler;
 	}
 	
-	private synchronized void setState(int state) {
+	public synchronized void setState(int state) {
+		Log.d("SET STATE", new Integer(state).toString());
 		mState = state;
 		handler.obtainMessage(ConnectDevice.MESSAGE_STATE_CHANGE, state, -1).sendToTarget();
 	}
@@ -141,7 +142,10 @@ public class BluetoothConnectionManager {
 		
 		ConnectedThread r;
 		synchronized(this) {
-			if (mState != STATE_CONNECTED) return;
+			if (mState != STATE_CONNECTED) {
+				Log.d(TAG, "Not STATE_CONNECTED ".concat(new Integer(mState).toString()));
+				return;
+			}
 			r = connectedThread;
 		}
 		r.write(out);
@@ -209,6 +213,7 @@ public class BluetoothConnectionManager {
 				try {
 					Log.w("AcceptThread", "Waiting Accept");
 					socket = serverSocket.accept();
+					NewGameActivity.starter = false;
 				}
 				catch(IOException ec) {
 					Log.d(TAG, "Exception in AcceptThread - run() - serverSocket.accept(): " + ec.getMessage());
@@ -333,7 +338,7 @@ public class BluetoothConnectionManager {
 				tmpOut = socket.getOutputStream();
 			}
 			catch(IOException e) {
-				//Log
+				Log.d("ConnectedThread", "No socket");
 			}
 			
 			inputStream = tmpIn;
@@ -347,8 +352,9 @@ public class BluetoothConnectionManager {
 			
 			while (true) {
 				try {
-					
+					Log.d("ConnectedThread", "dentro run");
 					bytes = inputStream.read(buffer);
+					Log.d("Messaggio ricevuto", "Messagio ricevuto");
 					handlerRead.obtainMessage(ConnectDevice.MESSAGE_READ, bytes, -1, buffer).sendToTarget();
 				}
 				catch(IOException ex) {
@@ -366,8 +372,9 @@ public class BluetoothConnectionManager {
 				//handler.obtainMessage(ConnectDevice.MESSAGE_WRITE, -1, -1, buffer).sendToTarget();
 			}
 			catch(IOException exc) { 
-				//Log
+				Log.d("ConnectedThread", "Eccezione write".concat(exc.getMessage()));
 			}
+			Log.d("ConnectedThread", "Scrittura completata");
 		}
 		
 		public void cancel() {
